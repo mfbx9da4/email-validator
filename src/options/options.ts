@@ -1,6 +1,8 @@
 const defaultOptions: ValidatorOptionsFinal = {
   email: 'name@example.org',
   sender: 'name@example.org',
+  timeout: 10 * 1000,
+  port: 25,
   validateRegex: true,
   validateMx: true,
   validateTypo: true,
@@ -10,6 +12,8 @@ const defaultOptions: ValidatorOptionsFinal = {
 
 type Options = {
   sender: string
+  port: number
+  timeout: number
   validateRegex: boolean
   validateMx: boolean
   validateTypo: boolean
