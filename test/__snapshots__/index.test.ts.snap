@@ -14,12 +14,71 @@ Object {
     "regex": Object {
       "valid": true,
     },
+    "sanitization": Object {
+      "valid": true,
+    },
     "smtp": Object {
       "reason": "SMTP Error: The mail address that you specified was not syntactically correct.",
       "valid": false,
     },
     "typo": Object {
       "valid": true,
+    },
+  },
+}
+`;
+
+exports[`validation tests fails when angle address is not allowed 1`] = `
+Object {
+  "reason": "regex",
+  "valid": false,
+  "validators": Object {
+    "disposable": Object {
+      "valid": false,
+    },
+    "mx": Object {
+      "valid": false,
+    },
+    "regex": Object {
+      "reason": "Angle address is not allowed",
+      "valid": false,
+    },
+    "sanitization": Object {
+      "valid": true,
+    },
+    "smtp": Object {
+      "valid": false,
+    },
+    "typo": Object {
+      "valid": false,
+    },
+  },
+}
+`;
+
+exports[`validation tests fails when subaddressing is not allowed 1`] = `
+Object {
+  "reason": "regex",
+  "valid": false,
+  "validators": Object {
+    "disposable": Object {
+      "valid": false,
+    },
+    "mx": Object {
+      "valid": false,
+    },
+    "regex": Object {
+      "reason": "Subaddressing is not allowed",
+      "valid": false,
+    },
+    "sanitization": Object {
+      "valid": true,
+    },
+    "smtp": Object {
+      "valid": false,
+    },
+    "typo": Object {
+      "valid": false,
     },
   },
 }
@@ -38,6 +97,9 @@ Object {
       "valid": false,
     },
     "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
       "valid": true,
     },
     "smtp": Object {
@@ -90,6 +152,9 @@ Object {
       "reason": "Email does not contain \\"@\\".",
       "valid": false,
     },
+    "sanitization": Object {
+      "valid": true,
+    },
     "smtp": Object {
       "valid": false,
     },
@@ -112,6 +177,9 @@ Object {
       "valid": false,
     },
     "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
       "valid": true,
     },
     "smtp": Object {
@@ -140,6 +208,9 @@ Object {
     "regex": Object {
       "valid": true,
     },
+    "sanitization": Object {
+      "valid": true,
+    },
     "smtp": Object {
       "valid": false,
     },
@@ -164,9 +235,90 @@ Object {
     "regex": Object {
       "valid": true,
     },
+    "sanitization": Object {
+      "valid": true,
+    },
     "smtp": Object {
-      "reason": "Mail server closed connection without sending any data.",
+      "reason": "SMTP Error: The requested action was not done. Some error occurmiles in the mail server.",
       "valid": false,
+    },
+    "typo": Object {
+      "valid": true,
+    },
+  },
+}
+`;
+
+exports[`validation tests passes when angle address is allowed 1`] = `
+Object {
+  "valid": true,
+  "validators": Object {
+    "disposable": Object {
+      "valid": true,
+    },
+    "mx": Object {
+      "valid": true,
+    },
+    "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
+      "valid": true,
+    },
+    "smtp": Object {
+      "valid": true,
+    },
+    "typo": Object {
+      "valid": true,
+    },
+  },
+}
+`;
+
+exports[`validation tests passes when quoted address 1`] = `
+Object {
+  "valid": true,
+  "validators": Object {
+    "disposable": Object {
+      "valid": true,
+    },
+    "mx": Object {
+      "valid": true,
+    },
+    "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
+      "valid": true,
+    },
+    "smtp": Object {
+      "valid": true,
+    },
+    "typo": Object {
+      "valid": true,
+    },
+  },
+}
+`;
+
+exports[`validation tests passes when subaddressing is allowed 1`] = `
+Object {
+  "valid": true,
+  "validators": Object {
+    "disposable": Object {
+      "valid": true,
+    },
+    "mx": Object {
+      "valid": true,
+    },
+    "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
+      "valid": true,
+    },
+    "smtp": Object {
+      "valid": true,
     },
     "typo": Object {
       "valid": true,
@@ -186,6 +338,9 @@ Object {
       "valid": true,
     },
     "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
       "valid": true,
     },
     "smtp": Object {
@@ -234,6 +389,9 @@ Object {
     "regex": Object {
       "valid": true,
     },
+    "sanitization": Object {
+      "valid": true,
+    },
     "smtp": Object {
       "valid": true,
     },
@@ -255,6 +413,9 @@ Object {
       "valid": true,
     },
     "regex": Object {
+      "valid": true,
+    },
+    "sanitization": Object {
       "valid": true,
     },
     "smtp": Object {

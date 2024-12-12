@@ -1,3 +1,5 @@
+import { ParseEmailOptions } from '../regex/regex'
+
 const defaultOptions: ValidatorOptionsFinal = {
   email: 'name@example.org',
   sender: 'name@example.org',
@@ -15,7 +17,7 @@ type Options = {
   validateTypo: boolean
   validateDisposable: boolean
   validateSMTP: boolean
-}
+} & ParseEmailOptions
 
 type MailCheckOptions = {
   additionalTopLevelDomains?: string[]

@@ -1,4 +1,4 @@
-import { isEmail } from './regex/regex'
+import { isEmail, parseEmail } from './regex/regex'
 import { checkTypo } from './typo/typo'
 import { getBestMx } from './dns/dns'
 import { checkSMTP } from './smtp/smtp'
@@ -9,19 +9,27 @@ import './types'
 
 export async function validate(emailOrOptions: string | ValidatorOptions): Promise<OutputFormat> {
   const options = getOptions(emailOrOptions)
-  const email = options.email
+  const emailRaw = options.email
 
-  if (options.validateRegex) {
-    const regexResponse = isEmail(email)
-    if (regexResponse) return createOutput('regex', regexResponse)
+  const regexResponse = parseEmail(emailRaw, {
+    allowQuoted: options.allowQuoted,
+    allowAngle: options.allowAngle,
+    rejectSubaddressing: options.rejectSubaddressing,
+  })
+  if (options.validateRegex && 'error' in regexResponse) return createOutput('regex', regexResponse.error)
+  // fallback to the naive domain extraction if the user specifically opted out of format validation
+  const domain = 'domain' in regexResponse ? regexResponse.domain : emailRaw.split('@')[1]
+  const email = 'effectiveAddr' in regexResponse ? regexResponse.effectiveAddr : emailRaw.trim()
+
+  // prevent SMTP injection
+  if (email.indexOf('\r') !== -1 || email.indexOf('\n') !== -1) {
+    return createOutput('sanitization', 'Email cannot contain newlines')
   }
 
   if (options.validateTypo) {
     const typoResponse = await checkTypo(email, options.additionalTopLevelDomains)
     if (typoResponse) return createOutput('typo', typoResponse)
   }
-
-  const domain = email.split('@')[1]
 
   if (options.validateDisposable) {
     const disposableResponse = await checkDisposable(domain)

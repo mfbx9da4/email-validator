@@ -1,6 +1,6 @@
 import { ElementType } from '../types'
 
-const OrderedLevels = ['regex', 'typo', 'disposable', 'mx', 'smtp'] as const
+const OrderedLevels = ['sanitization', 'regex', 'typo', 'disposable', 'mx', 'smtp'] as const
 
 export type SubOutputFormat = {
   valid: boolean
